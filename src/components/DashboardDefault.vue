@@ -28,30 +28,46 @@
                                 <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
                                 <path d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5V14zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4z"/>
                             </svg>
-                            <p class="card-text mt-3 text-dark">{{ data.filename }}</p>
+                            <p class="card-text mt-3 text-dark">{{ data.filename }} 
+                                <span class="float-right">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                    </svg>                          
+                                </span>               
+                            </p> 
+                            
                         </div>
                     <div class="card-body" v-else-if="data.format == '.zip' || data.format == '.rar'">
                         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-file-earmark-zip-fill" viewBox="0 0 16 16">
                             <path d="M5.5 9.438V8.5h1v.938a1 1 0 0 0 .03.243l.4 1.598-.93.62-.93-.62.4-1.598a1 1 0 0 0 .03-.243z"/>
                             <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm-4-.5V2h-1V1H6v1h1v1H6v1h1v1H6v1h1v1H5.5V6h-1V5h1V4h-1V3h1zm0 4.5h1a1 1 0 0 1 1 1v.938l.4 1.599a1 1 0 0 1-.416 1.074l-.93.62a1 1 0 0 1-1.109 0l-.93-.62a1 1 0 0 1-.415-1.074l.4-1.599V8.5a1 1 0 0 1 1-1z"/>
                         </svg>
-                        <p class="card-text mt-3 text-dark">{{ data.filename }}</p>                       
+                        <p class="card-text mt-3 text-dark">{{ data.filename }}
+                            <span class="float-right">
+                                <button v-on:click="actionFiles" class="reset-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                    </svg>   
+                                </button>                       
+                            </span>     
+                        </p>                       
                     </div>
                     <div class="card-body" v-else>
                         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-file-earmark-fill" viewBox="0 0 16 16">
                             <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"/>
                         </svg>
-                        <p class="card-text mt-3 text-dark">{{ data.filename }}</p>                       
+                        <p class="card-text mt-3 text-dark">{{ data.filename }}
+                            <span class="float-right">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                    </svg>                          
+                            </span>     
+                        </p>                       
                     </div>
                     
                 </div>
             </div> 
-
-            
-            
         </div>
-        
-       
        
         <div class="fixed-wrapper" >
             <Transition>
@@ -179,7 +195,7 @@
 
 #wrap-all {
     width: 100%;
-    min-height: 100%;
+    min-height: 100vh;
     position: fixed;
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */ 
@@ -255,6 +271,11 @@
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */ 
 }
 
+.reset-btn {
+    border: none;
+    background: none;
+}
+
 </style>
 
 <script>
@@ -300,7 +321,7 @@ export default {
             }).then(res => {
                 res.data.forEach( el => {
                     if(el.filename.length > 10) {
-                        el.filename = el.filename.substring(0,10) + "..."
+                        el.filename = el.filename.substring(0,5) + "..."
             }
            })
                 self.userFiles = res.data
@@ -360,6 +381,10 @@ export default {
            
 
             this.isClicked = !this.isClicked;
+        },
+
+        actionFiles() {
+            console.log("Test..")
         },
 
         

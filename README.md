@@ -1,14 +1,17 @@
 # panalama-apps
 
-This template should help get you started developing with Vue 3 in Vite.
+File hosting project with friendly UI and responsive design!
 
-## Recommended IDE Setup
+# Tech stacks
+- Vue JS (Frond-End)
+- Bootstrap (UI)
+- Codeigniter 3 (API)
+- Mysql (DBMS)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Libraries
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- Vue Router, for dynamic routing URI
+- Axios, to simplifies API Calls from the backend
 
 ## Project Setup
 

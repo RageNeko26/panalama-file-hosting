@@ -1,6 +1,6 @@
 # panalama-apps
 
-File hosting project with friendly UI and responsive design!
+File hosting project with friendly UI and responsive design! 
 
 # Tech stacks
 - Vue JS (Frond-End)
@@ -13,7 +13,7 @@ File hosting project with friendly UI and responsive design!
 - Vue Router, for dynamic routing URI
 - Axios, to simplifies API Calls from the backend
 
-## Project Setup
+
 
 ```sh
 npm install
@@ -30,3 +30,6 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Run the App
+Open your browser, then visit http://localhost:5173/

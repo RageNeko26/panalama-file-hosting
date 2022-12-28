@@ -1,7 +1,8 @@
 <template>
 
 <Transition>
-    <div id="wrap-all" v-if="isClicked" v-on:click="closeItem">
+    <div id="wrap-all" class="blur" v-if="isClicked" v-on:click="closeItem">
+        <div class="blur"></div>
         <div class="circle-loader-upload" v-if="isUploaded"></div>
     </div>
 </Transition>
@@ -19,25 +20,33 @@
 
         <div class="content" v-if="userFiles.length">
 
-            
-
-            <div class="content-item" v-for="data in userFiles">
+            <!-- Dot button doesn't work -->
+            <div class="content-item" v-for="data in userFiles" v-bind:key="data.id">
                 <div class="card center" >
                     <div class="card-body" v-if="data.format == '.jpg' || data.format == '.png' || data.format == '.jpeg'">
+                        
                             <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-file-earmark-image" viewBox="0 0 16 16">
                                 <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
                                 <path d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5V14zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4z"/>
                             </svg>
                             <p class="card-text mt-3 text-dark">{{ data.filename }} 
                                 <span class="float-right">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                                    </svg>                          
+                                    <button v-on:click="actionFiles" class="reset-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                        </svg>   
+                                    </button>                       
                                 </span>               
                             </p> 
-                            
                         </div>
                     <div class="card-body" v-else-if="data.format == '.zip' || data.format == '.rar'">
+                        <!-- <Transition>
+                            <div class="file-action" v-if="fileActions">
+                                <p>Action</p>
+                                <p>Action</p>
+                                <p>Action</p>
+                            </div>
+                        </Transition> -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-file-earmark-zip-fill" viewBox="0 0 16 16">
                             <path d="M5.5 9.438V8.5h1v.938a1 1 0 0 0 .03.243l.4 1.598-.93.62-.93-.62.4-1.598a1 1 0 0 0 .03-.243z"/>
                             <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm-4-.5V2h-1V1H6v1h1v1H6v1h1v1H6v1h1v1H5.5V6h-1V5h1V4h-1V3h1zm0 4.5h1a1 1 0 0 1 1 1v.938l.4 1.599a1 1 0 0 1-.416 1.074l-.93.62a1 1 0 0 1-1.109 0l-.93-.62a1 1 0 0 1-.415-1.074l.4-1.599V8.5a1 1 0 0 1 1-1z"/>
@@ -53,14 +62,18 @@
                         </p>                       
                     </div>
                     <div class="card-body" v-else>
+                        
+
                         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-file-earmark-fill" viewBox="0 0 16 16">
                             <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"/>
                         </svg>
                         <p class="card-text mt-3 text-dark">{{ data.filename }}
                             <span class="float-right">
+                                <button v-on:click="actionFiles" class="reset-btn">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
                                         <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                                    </svg>                          
+                                    </svg>   
+                                </button>                        
                             </span>     
                         </p>                       
                     </div>
@@ -272,9 +285,34 @@
 }
 
 .reset-btn {
-    border: none;
+    border: 1px solid red;
     background: none;
+    
+    
 }
+
+.blur {
+    
+    backdrop-filter: blur(8px);
+}
+
+.file-action {
+    background-color: #ffff;
+    width: 70%;
+    padding: 15px;
+    position: absolute;
+    top: -47px;
+    right: 15px;
+    border-radius: 8px;
+    border: 1px solid rgb(211, 206, 206);
+    
+}
+
+.file-action p {
+    color: black;
+
+}
+
 
 </style>
 
@@ -305,6 +343,7 @@ export default {
         return {
             isClicked: false,
             isUploaded: false,
+            fileActions: false,
             userFiles : [],
         }
     },
@@ -349,42 +388,36 @@ export default {
                 url : `http://localhost/panalama/upload/${self.$cookies.get('panalama_session')}`,
                 data: formData,
                 config: {},
-
             }).then(res => {
                 console.log(res.data);
-                
             })
              .finally(() => {
-               
                 self.isClicked = false;
                 self.isUploaded = false;
                 self.getFiles();
-                
-
-
                 })
             },3500)
             
-           
         },
 
         closeItem() {
             if(this.isUploaded) {
                 return;
             }
-
-
             this.isClicked = !this.isClicked;
         },
 
         showMoreAction() {
-           
+            
 
             this.isClicked = !this.isClicked;
         },
 
-        actionFiles() {
-            console.log("Test..")
+        actionFiles(e) {
+          const parent = e.currentTarget
+         const closestElement = parent.closest(".card")
+            // this.fileActions = !this.fileActions;
+            console.log(closestElement)
         },
 
         
